@@ -76,7 +76,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set up session middleware
 app.use(session({
-  secret: 'giantiss', // Change this to a secret string
+  secret: 'brandon', // Change this to a secret string
   resave: false,
   saveUninitialized: true
 }));
