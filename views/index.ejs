@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- css link here -->
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Taste Bites</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1><i class="fas fa-utensils"></i>Taste<span>Bites</span></h1>
+        </div>
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="#items">Featured items</a>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-bar" class="fas fa-bars"></div>
+            <a href="/cart">
+                <div id="cart">
+                    <i id="cart-count" class="fas fa-cart-plus"></i>
+                </div>
+            </a>
+        </div>
+    </header>
+    <div class="home" id="home">
+            <div class="main-home">
+                <div class="inner-home">
+                    <div class="left-content-home">
+                        <h1>All In Good Taste <br> Food With Taste Bites</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nam cum eligendi libero? Perspiciatis alias minima quasi nesciunt explicabo omnis iste accusantium quos, error aperiam quibusdam.</p>
+
+                    <button>Go to Menu</button>
+                    </div>
+                </div>
+                <div class="inner-home">    
+                    <div class="home-img">
+                        <img src="/images/main image.png" alt="">
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="About">
+        <h1>Welcome To TasteBites</h1>
+        <div class="main-about">
+
+            <div class="inner-about">
+                <div class="about-img">
+                    <img src="/images/asset-7.png" alt="">
+                </div>
+            </div>
+
+            <div class="inner-about">
+                <div class="right-content-about">
+                    <h3>Welcome</h3>
+                    <h2>All In Good Taste <br> Food With TasteBites</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nam cum eligendi libero? Perspiciatis alias minima quasi nesciunt explicabo omnis iste accusantium quos, error aperiam quibusdam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nam cum eligendi libero? Perspiciatis alias minima quasi nesciunt explicabo omnis iste accusantium quos, error aperiam quibusdam.</p>
+
+                <button>Read More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- menu page start -->
+    <div class="our-menu-item">
+        <div class="heading-menu" id="items">
+            <h3>Browse</h3>
+            <h1>Explore Our Menu</h1>
+        </div>
+
+        <div class="main-menu">
+            <% foods.forEach(function(food) { %>
+                <div class="inner-menu">
+                    <div class="menu-content">
+                    <div class="image-overlay"></div>
+                    <img src="<%= food.image %>" alt="<%= food.title %>">
+                    <h4><%= food.title %></h4>
+                    <div class="menu-star">
+                        <h1><span>Kes </span><%= food.price %></h1>
+                    </div>
+                    </div>
+                    <form action="/add-to-cart" method="post">
+                        <input type="hidden" name="id" value="<%= food.id %>">
+                        <input type="hidden" name="title" value="<%= food.title %>">
+                        <input type="hidden" name="price" value="<%= food.price %>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" value="add to cart" class="align-self-end btn btn-lg btn-block" style="margin-top: auto; font-size: x-large; color: #8CB560;"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </form>
+                </div>
+                <% }); %>
+        </div>
+
+    </div>
+<!-- menu page end -->
+    <div class="chose-us">
+        <div class="chose-headings">
+            <h4>Reason</h4>
+            <h1>Why Choose Us</h1>
+        </div>
+
+        <div class="main-chose">
+            <div class="inner-chose">
+                <img src="/images/Icon-1.png" alt="">
+                <div class="chose-content">
+                    <h2>Fast Delivery</h2>
+                    <p>adipisicing elit. Est, repudiandae, explicabo amet possimus blanditiis asperiores animi quidem obcaecati ipsam recu</p>
+                </div>
+            </div>
+
+            <div class="inner-chose">
+                <img src="/images/Icon-2.png" alt="">
+                <div class="chose-content">
+                    <h2>Friendlily Budgeted</h2>
+                    <p>adipisicing elit. Est, repudiandae, explicabo amet possimus blanditiis asperiores animi quidem obcaecati ipsam recu</p>
+                </div>
+            </div>
+
+            <div class="inner-chose">
+                <img src="/images/Icon.png" alt="">
+                <div class="chose-content">
+                    <h2>Extensive Menus</h2>
+                    <p>adipisicing elit. Est, repudiandae, explicabo amet possimus blanditiis asperiores animi quidem obcaecati ipsam recu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="history">
+        <div class="home" id="history">
+            <div class="main-home">
+                <div class="inner-home">
+                    <div class="left-content-home history-para">
+                        <h2>History</h2>
+                        <h1>All In Good Taste <br> Food With TasteBites</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nam cum eligendi libero? Perspiciatis alias minima quasi nesciunt explicabo omnis iste accusantium quos, error aperiam quibusdam.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nam cum eligendi libero? Perspiciatis alias minima quasi nesciunt explicabo omnis iste accusantium quos, error aperiam quibusdam.</p>
+
+                    <button>Read More</button>
+                    </div>
+                </div>
+                <div class="inner-home">
+                    <div class="home-img">
+                        <img src="/images/history.png" alt="">
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    <footer>
+        <div class="main-footer">
+            <div class="inner-footer">
+                <h2>TasteBites</h2>
+                <a href="#">About Us</a>
+                <a href="#">Menu</a>
+                <a href="#">Cart</a>
+                <a href="#">Contact</a>
+            </div>
+    
+            <div class="inner-footer">
+                <h2>Menu</h2>
+                <a href="#">Pizza</a>
+                <a href="#">Burger</a>
+                <a href="#">Beverages</a>
+                <a href="#">Snacks</a>
+            </div>
+    
+            <div class="inner-footer">
+                <h2>Follow us</h2>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Dribble</a>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/script.js"></script>
+</body>
+</html>

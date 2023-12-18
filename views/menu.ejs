@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <!-- fontawesoeme link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- css link here -->
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Taste Bites</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1><i class="fas fa-utensils"></i>Taste<span>Bites</span></h1>
+        </div>
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/menu">menu</a>
+            <a href="#">our items</a>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-bar" class="fas fa-bars"></div>
+            <div id="cart" class="cart-icon">
+                <a href="/cart">
+                    <i id="cart-count" class="fas fa-cart-plus">
+                        <!-- TODO: show how many products in cart -->
+                        <!-- <span id="cartCounter"></span> -->
+                    </i>
+                </a>
+            </div>
+            
+        </div>
+    </header>
+<!-- menu page start -->
+    <div class="our-menu-item">
+        <div class="heading-menu">
+            <h3>Browse</h3>
+            <h1> Our Menu</h1>
+        </div>
+
+        <div class="main-menu">
+                <% foods.forEach(function(food) { %>
+                <div class="inner-menu">
+                    <div class="menu-content">
+                    <div class="image-overlay"></div>
+                    <img src="<%= food.image %>" alt="<%= food.title %>">
+                    <h4><%= food.title %></h4>
+                    <div class="menu-star">
+                        <h1><span>Kes </span><%= food.price %></h1>
+                    </div>
+                    </div>
+                    <form action="/add-to-cart" method="post">
+                        <input type="hidden" name="id" value="<%= food.id %>">
+                        <input type="hidden" name="title" value="<%= food.title %>">
+                        <input type="hidden" name="price" value="<%= food.price %>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" value="add to cart" class="align-self-end btn btn-lg btn-block" style="margin-top: auto; font-size: x-large; color: #8CB560;"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </form>
+                </div>
+                <% }); %>
+            </div>
+          
+        </div>
+
+    </div>
+<!-- menu page end -->
+    <footer>
+        <div class="main-footer">
+            <div class="inner-footer">
+                <h2>TasteBites</h2>
+                <a href="#">About Us</a>
+                <a href="#">Menu</a>
+                <a href="#">Cart</a>
+                <a href="#">Contact</a>
+            </div>
+    
+            <div class="inner-footer">
+                <h2>Menu</h2>
+                <a href="#">Pizza</a>
+                <a href="#">Burger</a>
+                <a href="#">Beverages</a>
+                <a href="#">Snacks</a>
+            </div>
+    
+            <div class="inner-footer">
+                <h2>Follow us</h2>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Dribble</a>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartIcon();
+        });
+    </script>
+</body>
+</html>
