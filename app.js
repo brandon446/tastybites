@@ -11,7 +11,6 @@ const db = mysql.createConnection({
   user: 'brandon',
   password: 'Jushman2323!',
   database: 'tastebites',
-  authPlugin: 'mysql_native_password',
 });
 
 db.connect((err) => {
@@ -20,77 +19,80 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to MySQL as id ' + db.threadId);
-      // SQL query to create the 'foods' table
-    const createFoodsTableQuery = `
-      CREATE TABLE IF NOT EXISTS foods (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255) NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
-        image VARCHAR(255)
-      )
-    `;
   
-    // Execute the query to create the 'foods' table
-    db.query(createFoodsTableQuery, (err, result) => {
-      if (err) {
-        console.error('Error creating foods table: ' + err.stack);
-        return;
-      }
-      console.log('Foods table created successfully');
-      // Close the connection after the query is executed (optional)
-      // db.end();
-    }); 
+  // SQL query to create the 'foods' table
+  const createFoodsTableQuery = `
+    CREATE TABLE IF NOT EXISTS foods (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      price DECIMAL(10, 2) NOT NULL,
+      image VARCHAR(255)
+    )
+  `;
+  
+  // Execute the query to create the 'foods' table
+  db.query(createFoodsTableQuery, (err, result) => {
+    if (err) {
+      console.error('Error creating foods table: ' + err.stack);
+      return;
+    }
+    console.log('Foods table created successfully');
+    // Close the connection after the query is executed (optional)
+    // db.end();
+  });
+  
   // SQL query to insert sample data into the 'foods' table
-  // const insertSampleDataQuery = `
-  //   INSERT INTO foods (title, price, image) VALUES
-  //     ('Shawarma', 200.00, '/images/food1.png'),
-  //     ('Stir Fry', 300.00, '/images/food2.png'),
-  //     ('Burger', 180.00, '/images/food3.png'),
-  //     ('Pizza', 250.00, '/images/food4.png'),
-  //     ('Chicken', 200.00, '/images/food5.png'),
-  //     ('Fried Rice', 300.00, '/images/food6.png'),
-  //     ('Fried Chicken', 180.00, '/images/food7.png'),
-  //     ('Chicken Salad', 250.00, '/images/food8.png'),
-  //     ('Chicken Wings', 200.00, '/images/food9.png'),
-  //     ('Chicken Burger', 300.00, '/images/food10.png'),
-  //     ('Chicken Shawarma', 180.00, '/images/food11.png'),
-  //     ('Sushi Roll', 320.00, '/images/food12.png')
-  // `;
+  const insertSampleDataQuery = `
+    INSERT INTO foods (title, price, image) VALUES
+      ('Shawarma', 200.00, '/images/food1.png'),
+      ('Stir Fry', 300.00, '/images/food2.png'),
+      ('Burger', 180.00, '/images/food3.png'),
+      ('Pizza', 250.00, '/images/food4.png'),
+      ('Chicken', 200.00, '/images/food5.png'),
+      ('Fried Rice', 300.00, '/images/food6.png'),
+      ('Fried Chicken', 180.00, '/images/food7.png'),
+      ('Chicken Salad', 250.00, '/images/food8.png'),
+      ('Chicken Wings', 200.00, '/images/food9.png'),
+      ('Chicken Burger', 300.00, '/images/food10.png'),
+      ('Chicken Shawarma', 180.00, '/images/food11.png'),
+      ('Sushi Roll', 320.00, '/images/food12.png')
+  `;
 
-  // // Execute the query to insert sample data into the 'foods' table
-  // db.query(insertSampleDataQuery, (err, result) => {
-  //   if (err) {
-  //     console.error('Error inserting sample data: ' + err.stack);
-  //     return;
-  //   }
-  //   console.log('Sample data inserted into the foods table successfully');
+  // Execute the query to insert sample data into the 'foods' table
+  db.query(insertSampleDataQuery, (err, result) => {
+    if (err) {
+      console.error('Error inserting sample data: ' + err.stack);
+      return;
+    }
+    console.log('Sample data inserted into the foods table successfully');
 
-  //   // Close the connection after the query is executed (optional)
-  //   // db.end();
-  // }); 
+    // Close the connection after the query is executed (optional)
+    // db.end();
+  });
 });
-
-
 
 // Set up middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // Set up session middleware
 app.use(session({
   secret: 'giantiss', // Change this to a secret string
   resave: false,
   saveUninitialized: true
 }));
+
 // Set up view engine
 app.set('view engine', 'ejs');
 
 // Middleware to serve static files
 app.use(express.static('public'));
-app.use('/css', express.static(__dirname + 'public/css'));
-app.use('/js', express.static(__dirname + 'public/js'));
-app.use('/images', express.static(__dirname + 'public/images'));
-app.use('/fonts', express.static(__dirname + 'public/fonts'));
-app.use('/vendor', express.static(__dirname + 'public/vendor'));
-app.use('/scss', express.static(__dirname + 'public/scss'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/images', express.static(__dirname + '/public/images'));
+app.use('/fonts', express.static(__dirname + '/public/fonts'));
+app.use('/vendor', express.static(__dirname + '/public/vendor'));
+app.use('/scss', express.static(__dirname + '/public/scss'));
+
 // Middleware to create a cartCounter variable in all views
 app.use((req, res, next) => {
   const cartItems = req.session.cartItems || [];
@@ -98,6 +100,11 @@ app.use((req, res, next) => {
   res.locals.cartCounter = totalQuantity || 0; // Ensure default value is set if totalQuantity is undefined
   next();
 });
+
+// Routes
+
+// Rest of your routes
+
 
 // Routes
 app.get('/', (req, res) => {
